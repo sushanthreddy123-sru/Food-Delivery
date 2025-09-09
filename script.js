@@ -1,3 +1,4 @@
+
 let orderIdCounter = 1;
 
 // Order class
@@ -14,12 +15,24 @@ class FastFoodFactory {
   createOrder(item) {
     if (item === "Burger") return new Order("Burger", 150, "Fast Food");
     if (item === "Fries") return new Order("Fries", 100, "Fast Food");
+    if (item === "Sandwich") return new Order("Sandwich", 120, "Fast Food");
   }
 }
 class ItalianFactory {
   createOrder(item) {
     if (item === "Pizza") return new Order("Pizza", 250, "Italian");
     if (item === "Pasta") return new Order("Pasta", 200, "Italian");
+  }
+}
+class DessertFactory {
+  createOrder(item) {
+    if (item === "Ice Cream") return new Order("Ice Cream", 90, "Dessert");
+  }
+}
+class HealthyFactory {
+  createOrder(item) {
+    if (item === "Salad") return new Order("Salad", 80, "Healthy");
+    if (item === "Noodles") return new Order("Noodles", 180, "Healthy");
   }
 }
 
@@ -74,10 +87,14 @@ class OrderBookingBuilder {
   setPayment(payment) { this.payment = payment; return this; }
   build() {
     let factory;
-    if (["Burger", "Fries"].includes(this.item)) {
+    if (["Burger", "Fries", "Sandwich"].includes(this.item)) {
       factory = new FastFoodFactory();
-    } else {
+    } else if (["Pizza", "Pasta"].includes(this.item)) {
       factory = new ItalianFactory();
+    } else if (["Ice Cream"].includes(this.item)) {
+      factory = new DessertFactory();
+    } else if (["Salad", "Noodles"].includes(this.item)) {
+      factory = new HealthyFactory();
     }
     const order = factory.createOrder(this.item);
     return new OrderBooking(this.name, order, this.payment);
