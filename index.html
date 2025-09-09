@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Food Delivery App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <h2>🍔 Food Delivery</h2>
+    <ul>
+      <li><a href="#" onclick="showSection('menu')">Menu</a></li>
+      <li><a href="#" onclick="showSection('active')">Active Orders</a></li>
+      <li><a href="#" onclick="showSection('categories')">Categories</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero section">
+    <h1>Welcome to Food Delivery App</h1>
+    <p>Order delicious food instantly, manage your orders, and explore categories.</p>
+    <button onclick="showSection('menu')" class="cta-btn">🍽️ Order Now</button>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="card section" style="display:none;">
+    <h2>Menu</h2>
+    <form id="orderForm">
+      <div class="form-group">
+        <label for="customerName">Your Name:</label>
+        <input type="text" id="customerName" required placeholder="Enter your name"/>
+      </div>
+      <div class="form-group">
+        <label for="foodItem">Food Item:</label>
+        <select id="foodItem" required>
+          <option value="Pizza">Pizza</option>
+          <option value="Burger">Burger</option>
+          <option value="Pasta">Pasta</option>
+          <option value="Fries">Fries</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="payment">Payment Method:</label>
+        <select id="payment">
+          <option value="Cash">Cash</option>
+          <option value="UPI">UPI</option>
+          <option value="Card">Card</option>
+        </select>
+      </div>
+      <button type="submit">🍔 Place Order</button>
+    </form>
+    <p id="orderStatus"></p>
+  </section>
+
+  <!-- Active Orders Section -->
+  <section id="active" class="card section" style="display:none;">
+    <h2>Active Orders</h2>
+    <div id="orderFilters">
+      <button data-filter="all">All</button>
+      <button data-filter="Fast Food">Fast Food</button>
+      <button data-filter="Italian">Italian</button>
+    </div>
+    <div id="orderList" class="order-list"></div>
+    <button id="repeatOrder">🔁 Repeat Last Order</button>
+    <button id="clearOrders" style="margin-top:10px; background:#6c757d;">🗑️ Clear All Orders</button>
+    <p id="orderCount"></p>
+  </section>
+
+  <!-- Categories Section -->
+  <section id="categories" class="card section" style="display:none;">
+    <h2>Order Categories</h2>
+    <div class="category-list">
+      <div class="category-card fast-food">Burger - Fast Food<br>Price: ₹150</div>
+      <div class="category-card italian">Pizza - Italian<br>Price: ₹250</div>
+      <div class="category-card italian">Pasta - Italian<br>Price: ₹200</div>
+      <div class="category-card fast-food">Fries - Fast Food<br>Price: ₹100</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Food Delivery App | Built with Design Patterns</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    function showSection(sectionId) {
+      document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
+      document.getElementById(sectionId).style.display = 'block';
+    }
+  </script>
+</body>
+</html>
